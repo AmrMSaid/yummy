@@ -1,0 +1,75 @@
+body,
+.nav-inner {
+  background-color: #0d0d0d;
+}
+
+.logo {
+  width: 50px;
+}
+
+.offcanvas.offcanvas-start {
+  width: auto;
+}
+
+.nav-inner {
+  width: 200px;
+  position: relative;
+}
+
+.active,
+.nav-link:hover {
+  color: #ffd53d !important;
+}
+
+.nav-footer {
+  position: absolute;
+}
+
+main {
+  padding: 100px;
+  padding-top: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+}
+
+.img-card {
+  break-inside: avoid;
+  position: relative;
+}
+
+.layer {
+  position: absolute;
+  transform: translateY(101%);
+  transition: all 0.4s;
+}
+
+.img-card:hover .layer {
+  transform: translateY(0);
+}
+
+@media (min-width: 1200px) {
+  #search,
+  #contact {
+    width: 75%;
+  }
+}
+
+#search input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#contact {
+  min-height: 85vh;
+}
+
+#contact input::placeholder {
+  color: #212529aa;
+}
+
+.alert {
+  width: fit-content;
+}
+
+.spinner {
+  transform: translate(-16px, -16px);
+}

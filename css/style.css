@@ -70,6 +70,7 @@ main {
   width: fit-content;
 }
 
-.spinner {
-  transform: translate(-16px, -16px);
+.flame {
+  transform: translate(-50%, -50%);
+  width: 55px;
 }

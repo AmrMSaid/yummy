@@ -1,13 +1,15 @@
-let meals = document.getElementById("meals");
-let search = document.getElementById("search");
-let details = document.getElementById("details");
-let contact = document.getElementById("contact");
-let navs = document.querySelectorAll(".nav-link");
-let loading = document.querySelector(".loading");
-let submitBtn;
+"use strict";
+
+const meals = document.getElementById("meals");
+const search = document.getElementById("search");
+const details = document.getElementById("details");
+const contact = document.getElementById("contact");
+const loading = document.querySelector(".loading");
+const navs = document.querySelectorAll(".nav-link");
+const submitBtn = document.getElementById("submitBtn");
 
 async function fetchData(endpoint) {
-  let response = await fetch(
+  const response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/${endpoint}`
   );
   return await response.json();
@@ -36,7 +38,7 @@ function clear() {
   contact.classList.add("d-none");
 }
 
-function LoadAndClear() {
+function loadAndClear() {
   loading.classList.remove("d-none");
   clear();
 }
@@ -103,7 +105,7 @@ async function searchByName(input) {
   loading.classList.remove("d-none");
   clearForSearch();
 
-  let data = await fetchData(`search.php?s=${input}`);
+  const data = await fetchData(`search.php?s=${input}`);
 
   if (data.meals) {
     displayMeals(data.meals);
@@ -122,7 +124,7 @@ async function searchByFirstLetter(input) {
   } else {
     ("");
   }
-  let data = await fetchData(`search.php?f=${input}`);
+  const data = await fetchData(`search.php?f=${input}`);
 
   if (data.meals) {
     displayMeals(data.meals);
@@ -133,9 +135,9 @@ async function searchByFirstLetter(input) {
 }
 
 async function getCategories() {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`categories.php`);
+  const data = await fetchData(`categories.php`);
   displayCategories(data.categories);
 
   loading.classList.add("d-none");
@@ -172,18 +174,18 @@ function displayCategories(arr) {
 }
 
 async function getCategoryMeals(category) {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`filter.php?c=${category}`);
+  const data = await fetchData(`filter.php?c=${category}`);
   displayMeals(data.meals.slice(0, 20));
 
   loading.classList.add("d-none");
 }
 
 async function getAreas() {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`list.php?a=list`);
+  const data = await fetchData(`list.php?a=list`);
   displayAreas(data.meals);
 
   loading.classList.add("d-none");
@@ -210,18 +212,18 @@ function displayAreas(arr) {
 }
 
 async function getAreaMeals(area) {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`filter.php?a=${area}`);
+  const data = await fetchData(`filter.php?a=${area}`);
   displayMeals(data.meals.slice(0, 20));
 
   loading.classList.add("d-none");
 }
 
 async function getIngredients() {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`list.php?i=list`);
+  const data = await fetchData(`list.php?i=list`);
   displayIngredients(data.meals.slice(0, 20));
 
   loading.classList.add("d-none");
@@ -249,18 +251,18 @@ function displayIngredients(arr) {
 }
 
 async function getIngredientMeals(ingredients) {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`filter.php?i=${ingredients}`);
+  const data = await fetchData(`filter.php?i=${ingredients}`);
   displayMeals(data.meals.slice(0, 20));
 
   loading.classList.add("d-none");
 }
 
 async function getMealDetails(mealID) {
-  LoadAndClear();
+  loadAndClear();
 
-  let data = await fetchData(`lookup.php?i=${mealID}`);
+  const data = await fetchData(`lookup.php?i=${mealID}`);
   displayMealDetails(data.meals[0]);
 
   loading.classList.add("d-none");
@@ -278,7 +280,7 @@ function displayMealDetails(meal) {
       `;
     }
   }
-  let tagsArr = meal.strTags?.split(",");
+  const tagsArr = meal.strTags?.split(",");
   let tags = ``;
 
   if (tagsArr) {
@@ -295,7 +297,7 @@ function displayMealDetails(meal) {
     }
     tags += `</div>`;
   }
-  let temp = `
+  const temp = `
     <div class="col-md-4">
       <img
         src="${meal.strMealThumb}"
@@ -318,12 +320,12 @@ function displayMealDetails(meal) {
   details.innerHTML = temp;
 }
 
-let nameInputFocus = false;
-let emailInputFocus = false;
-let phoneInputFocus = false;
-let ageInputFocus = false;
-let passwordInputFocus = false;
-let repasswordInputFocus = false;
+const nameInputFocus = false;
+const emailInputFocus = false;
+const phoneInputFocus = false;
+const ageInputFocus = false;
+const passwordInputFocus = false;
+const repasswordInputFocus = false;
 
 function displayContact() {
   clear();
@@ -417,7 +419,6 @@ function displayContact() {
       </button>
     </div>
   `;
-  submitBtn = document.getElementById("submitBtn");
 
   document.getElementById("nameInput").addEventListener("focus", () => {
     nameInputFocus = true;

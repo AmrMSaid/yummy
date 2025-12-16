@@ -6,6 +6,7 @@ const details = document.getElementById("details");
 const contact = document.getElementById("contact");
 const loading = document.querySelector(".loading");
 const navs = document.querySelectorAll(".nav-link");
+const title = document.querySelector("title");
 
 async function fetchData(endpoint) {
   const response = await fetch(
@@ -24,9 +25,10 @@ window.onload = () => {
 };
 
 navs.forEach((nav) => {
-  nav.addEventListener("click", function () {
+  nav.addEventListener("click", function (event) {
     document.querySelector(".active").classList.remove("active");
     nav.classList.add("active");
+    title.textContent = event.target.textContent + " | Yummy";
   });
 });
 
@@ -139,6 +141,8 @@ async function getSelectionMeals(selection) {
   const data = await fetchData(`filter.php?${selection}`);
   displayMeals(data.meals.slice(0, 20));
 
+  title.textContent = (selection + " | Yummy").slice(2);
+
   loading.classList.add("d-none");
 }
 
@@ -246,6 +250,7 @@ async function getMealDetails(mealID) {
   const data = await fetchData(`lookup.php?i=${mealID}`);
   displayMealDetails(data.meals[0]);
 
+  title.textContent = data.meals[0].strMeal + " | Yummy";
   loading.classList.add("d-none");
 }
 
